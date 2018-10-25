@@ -1,8 +1,5 @@
 package HW3;
 
-/*** Author :Vibhav Gogate
-The University of Texas at Dallas
- *****/
 
 
 import java.awt.AlphaComposite;
@@ -34,9 +31,9 @@ public class KMeans {
 			
 			BufferedImage kmeansJpg = kmeans_helper(originalImage,k);
 			ImageIO.write(kmeansJpg, "jpg", new File(args[2]));
-				//kmeansJpg.get
+				
 			
-			//ImageIO.write(originalImage, "jpg", new File(args[2]));
+			
 
 		}catch(IOException e){
 			System.out.println(e.getMessage());
@@ -55,7 +52,7 @@ public class KMeans {
 		for(int i=0;i<w;i++){
 			for(int j=0;j<h;j++){
 				rgb[count++]=kmeansImage.getRGB(i,j);
-				//kmeansImage.get
+				
 			}
 		}
 		// Call kmeans algorithm: update the rgb values
@@ -143,9 +140,7 @@ public class KMeans {
 	private static int[] kmeans(int[] rgb, int k){
 
 		HashMap<Integer, ArrayList<Integer>> map=new HashMap<>();
-		//int[] red=new int[rgb.length];
-		//int[] blue=new int[rgb.length];
-		//int[] green=new int[rgb.length];
+		
 		Color mycolor;
 		ArrayList<Integer> aList;
 		for(int i=0;i<rgb.length;i++) {
@@ -157,11 +152,11 @@ public class KMeans {
 
 			map.put(i, aList);
 		}
-		//System.out.println(map.size());
+		
 		List<List<Integer>> centroidList=new ArrayList<>();
 		List<List<Integer>> cList=new ArrayList<>();
 		Set<Integer> centroids=new HashSet<>();
-		//int index=0;
+		
 		Random rand=new Random();
 		while(centroids.size()<=k) {
 			int n=rand.nextInt(map.size());
@@ -178,9 +173,7 @@ public class KMeans {
 
 
 		}
-		//System.out.println("in");
-		//System.out.println(centroids);
-		//System.out.println("out");
+		
 		HashMap<Integer,List<Integer>> labels=new HashMap<Integer,List<Integer>>();
 		int r=0;
 		while(true) {
@@ -197,9 +190,7 @@ public class KMeans {
 			for(Integer m=0;m<cList.size();m++) {
 				List<Integer> l1=centroidList.get(m);
 				List<Integer> l2=cList.get(m);
-				//System.out.println(l1.get(0)+" "+l2.get(0));
-				//System.out.println(l1.get(1)+" "+l2.get(1));
-				//System.out.println(l1.get(2)+" "+l2.get(2));
+				
 				if(Math.abs(l1.get(0)-l2.get(0))>2 || Math.abs(l1.get(1)-l2.get(1))>2 || Math.abs(l1.get(1)-l2.get(1))>2) {
 					bool=false;
 					break;
@@ -208,12 +199,12 @@ public class KMeans {
 			if(bool)
 				break;
 			centroidList=cList;
-			//System.out.println("-------- "+r);
+			
 			r++;
 
 
 		}
-		//System.out.println("done");
+		
 		for(int i=0;i<labels.size();i++) {
 			List<Integer> pixels=labels.get(i);
 			List<Integer> list=centroidList.get(i);
